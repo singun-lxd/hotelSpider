@@ -127,6 +127,7 @@ response = requests.post(
     cookies=cookies,
     headers=headers,
     json=json_data,
+    verify=False,
 )
 
 # 获取生成 testab 的 JS 代码

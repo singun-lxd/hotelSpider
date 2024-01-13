@@ -190,6 +190,7 @@ class XieCheng:
                         cookies=self.cookies,
                         headers=self.headers,
                         json=json_data,
+                        verify=False,
                     )
                 except requests.exceptions.SSLError as e:
                     self.wrong_hotel_id.append(id)
@@ -323,6 +324,7 @@ class XieCheng:
             cookies=self.cookies,
             headers=self.headers,
             json=json_data,
+            verify=False,
         )
 
         # 解析请求
@@ -379,6 +381,7 @@ class XieCheng:
             'https://m.ctrip.com/restapi/soa2/21881/json/getHotelScript',
             headers=self.headers,
             json=json_data,
+            verify=False,
         )
 
         # 制作网页端发送代码
@@ -479,6 +482,7 @@ class XieCheng:
             cookies=self.cookies,
             headers=self.headers,
             json=json_data,
+            verify=False,
         )
         cities = json.loads(response.text)['Response']['searchResults']
 
