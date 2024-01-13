@@ -31,7 +31,7 @@ class SearchTask(QThread):
         # 初始化爬虫，主要确认驱动是否存在
         try:
             spider = XieCheng(params=self.params)
-        except selenium.common.exceptions.SessionNotCreatedException:
+        except selenium.common.exceptions.SessionNotCreatedException as e:
             self._log('携程端：驱动存在问题，请确认路径或版本是否正确。')
             return
 
@@ -149,9 +149,9 @@ class SearchTask(QThread):
             if not os.path.exists(self.params['setting']['web_path']):
                 self._log('携程端：用户输入的浏览器路径不存在。')
                 return False
-            elif not self.params['setting']['web_path'].endswith('.exe'):
-                self._log('携程端：用户输入的浏览器路径不是 exe 文件。')
-                return False
+            # elif not self.params['setting']['web_path'].endswith('.exe'):
+            #     self._log('携程端：用户输入的浏览器路径不是 exe 文件。')
+            #     return False
         else:
             self._log('携程端：用户没有输入浏览器路径。')
             return False
@@ -162,9 +162,9 @@ class SearchTask(QThread):
             if not os.path.exists(self.params['setting']['driver_path']):
                 self._log('携程端：用户输入的驱动路径不存在。')
                 return False
-            elif not self.params['setting']['driver_path'].endswith('.exe'):
-                self._log('携程端：用户输入的驱动路径不是 exe 文件。')
-                return False
+            # elif not self.params['setting']['driver_path'].endswith('.exe'):
+            #     self._log('携程端：用户输入的驱动路径不是 exe 文件。')
+            #     return False
         else:
             self._log('携程端：用户没有输入驱动路径。')
             return False

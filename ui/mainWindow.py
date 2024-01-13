@@ -279,7 +279,7 @@ class SpiderWindow(object):
         self.label_13.setText(_translate("MainWindow", "年"))
         self.label_16.setText(_translate("MainWindow", "当前平台"))
         self.label_17.setText(_translate("MainWindow", "酒店数"))
-        self.maxHotelLine.setText(_translate("MainWindow", "50"))
+        self.maxHotelLine.setText(_translate("MainWindow", "10"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "主页面"))
         self.label.setText(_translate("MainWindow", "控制器路径"))
         self.driverChooseButton.setText(_translate("MainWindow", "..."))

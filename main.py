@@ -298,7 +298,7 @@ class MyWindow(QMainWindow, SpiderWindow):
         if is_dir:
             file_name = QFileDialog.getExistingDirectory(self, "选取文件夹", self.cwd)
         else:
-            file_name, _ = QFileDialog.getOpenFileName(self, "选取文件", self.cwd, 'Exe files(*.exe)')
+            file_name, _ = QFileDialog.getOpenFileName(self, "选取文件", self.cwd, '*')
 
         # 选择文件并传递给 line_edit
         if file_name:

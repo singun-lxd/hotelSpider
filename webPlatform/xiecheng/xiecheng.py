@@ -4,7 +4,7 @@ import os
 import time
 import base64
 import requests
-import execjs
+#import execjs
 import threading
 import numpy as np
 import random
@@ -115,7 +115,8 @@ class XieCheng:
                             breakfast,
                             room_sale['base']['maxGuest'],
                         ])
-            except KeyError:
+            except KeyError as e:
+                print(e)
                 continue
 
         wb.save(os.path.join(self.params['setting']['output_path'],
@@ -190,7 +191,7 @@ class XieCheng:
                         headers=self.headers,
                         json=json_data,
                     )
-                except requests.exceptions.SSLError:
+                except requests.exceptions.SSLError as e:
                     self.wrong_hotel_id.append(id)
                     logger.info('爬虫端：酒店 {} 获取失败，已经加入错误酒店列表。'.format(id))
                     continue
@@ -200,7 +201,7 @@ class XieCheng:
                     res = json.loads(response.text)['Response']['baseRooms']
                     self.hotel_list[id]['roomList'] = res
                     time.sleep(random.random() * 5 + 1)
-                except KeyError:
+                except KeyError as e:
                     self.wrong_hotel_id.append(id)
                     logger.info('爬虫端：酒店 {} 获取失败，已经加入错误酒店列表。'.format(id))
                     continue
@@ -514,6 +515,7 @@ class XieCheng:
         screen_shot = base64.b64decode(screen_shot)
         screen_shot = BytesIO(screen_shot)
         screen_shot = Image.open(screen_shot)
+        screen_shot.save('./source/full_out.png')
 
         try:
             QR_area = self._driver.find_element(by=By.ID, value='qrcode_img')
@@ -562,7 +564,7 @@ class XieCheng:
                 WebDriverWait(self._driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, 'member-box')))
                 logger.info('读取 cookie 文件成功，该 cookie 有效。')
                 return True, None
-            except Exception:
+            except Exception as e:
                 os.remove(os.path.join(cookie_path, 'xc.json'))
                 logger.info('读取 cookie 文件成功，但是该文件无效，删除该文件，并且使用扫码登陆。')
                 return self.load_cookie_file()

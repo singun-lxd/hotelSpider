@@ -49,7 +49,8 @@ class XieChengServer:
 
                     # 打开浏览器，创建连接。
                     path = os.getcwd() + '/source/static/callback.html'
-                    webbrowser.get('chrome').open('file://{}'.format(path))
+                    url = 'file://{}'.format(path)
+                    result = webbrowser.get('chrome').open(url)
                     logger.info('服务器：无网页端连接，打开网页 - {}。'.format(path))
 
                 else:
