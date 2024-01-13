@@ -94,14 +94,14 @@ class SearchTask(QThread):
             return False
 
         # 检查主页面时间
-        in_time_str = '{}-{}-{}'.format(self.params['main']['in_year'],
-                                        self.params['main']['in_month'],
-                                        self.params['main']['in_day']
-                                        if int(self.params['main']['in_day']) >= 10 else '0' + self.params['main']['in_day'])
-        out_time_str = '{}-{}-{}'.format(self.params['main']['out_year'],
-                                         self.params['main']['out_month'],
-                                         self.params['main']['out_day']
-                                         if int(self.params['main']['out_day']) >= 10 else '0' + self.params['main']['out_day'])
+        in_year = int(self.params['main']['in_year'])
+        in_month = int(self.params['main']['in_month'])
+        in_day = int(self.params['main']['in_day'])
+        in_time_str = '{:04d}-{:02d}-{:02d}'.format(in_year, in_month, in_day)
+        out_year = int(self.params['main']['out_year'])
+        out_month = int(self.params['main']['out_month'])
+        out_day = int(self.params['main']['out_day'])
+        out_time_str = '{:04d}-{:02d}-{:02d}'.format(out_year, out_month, out_day)
 
         in_time = time.strptime(in_time_str, '%Y-%m-%d')
         out_time = time.strptime(out_time_str, '%Y-%m-%d')
